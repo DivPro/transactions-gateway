@@ -2,23 +2,22 @@ package main
 
 import (
 	"flag"
-	"github.com/Shopify/sarama"
-	"github.com/divpro/transactions-gateway/internal/config"
-	"github.com/divpro/transactions-gateway/internal/http"
-	"github.com/gorilla/mux"
-	"golang.org/x/exp/slog"
-	"gopkg.in/yaml.v3"
 	"log"
 	coreHttp "net/http"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
+
+	"github.com/Shopify/sarama"
+	"github.com/divpro/transactions-gateway/internal/config"
+	"github.com/divpro/transactions-gateway/internal/http"
+	"github.com/gorilla/mux"
+	"golang.org/x/exp/slog"
+	"gopkg.in/yaml.v3"
 )
 
-var (
-	configPath string
-)
+var configPath string
 
 func init() {
 	flag.StringVar(&configPath, "config", "config.yml", "Configuration file name")

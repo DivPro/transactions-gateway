@@ -19,15 +19,12 @@ linters-settings:
     sections:
       - standard
       - default
-      - prefix(git.qvant.ru/go-libs)
-      - prefix(gitlab.strwise.org/rps)
     custom-order: true
 
 linters:
   disable-all: true
   enable:
     - decorder
-    - errcheck
     - errname
     - errorlint
     - gocognit

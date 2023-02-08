@@ -2,9 +2,10 @@ package http
 
 import (
 	"encoding/json"
+	"net/http"
+
 	"github.com/Shopify/sarama"
 	api "github.com/divpro/transactions-example/pkg/entity"
-	"net/http"
 )
 
 type Handler struct {
@@ -20,14 +21,13 @@ func (h Handler) DepositCreate(w http.ResponseWriter, r *http.Request) {
 
 	var request api.Deposit
 
-	// TODO from auth
-	request.UserID = "adeb0c95-a333-4049-9c27-beb34ec3cd32"
-	request.UserID = "0a68a321-de8e-48ef-83b3-c256e087d310"
-
 	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
+
+	// TODO from auth
+	request.UserID = "0a68a321-de8e-48ef-83b3-c256e087d310"
 
 	data, err := json.Marshal(request)
 	if err != nil {
@@ -39,6 +39,11 @@ func (h Handler) DepositCreate(w http.ResponseWriter, r *http.Request) {
 		Topic: "deposits",
 		Value: sarama.ByteEncoder(data),
 	})
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
 	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
@@ -55,6 +60,10 @@ func (h Handler) TransactionCreate(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
+	request.TargetID = request.UserID
+
+	// TODO from auth
+	request.UserID = "adeb0c95-a333-4049-9c27-beb34ec3cd32"
 
 	data, err := json.Marshal(request)
 	if err != nil {
@@ -66,6 +75,11 @@ func (h Handler) TransactionCreate(w http.ResponseWriter, r *http.Request) {
 		Topic: "transactions",
 		Value: sarama.ByteEncoder(data),
 	})
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
 	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return

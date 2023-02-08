@@ -64,12 +64,7 @@ func Middleware() (mux.MiddlewareFunc, error) {
 				Options:    &options,
 			}
 			if err := openapi3filter.ValidateRequest(r.Context(), requestValidationInput); err != nil {
-				var serr *openapi3.SchemaError
-				if errors.As(err, &serr) {
-					w.WriteHeader(http.StatusBadRequest)
-					return
-				}
-
+				_, _ = w.Write([]byte(err.Error()))
 				w.WriteHeader(http.StatusBadRequest)
 
 				return
