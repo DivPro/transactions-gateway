@@ -1,0 +1,9 @@
+type: array
+items:
+  type: object
+  properties:
+    id: { type: string, format: uuid }
+    target_id: { type: string, format: uuid }
+    amount: { type: string }
+    created_at: { type: string, format: date-time }
+

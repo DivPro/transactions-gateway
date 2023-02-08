@@ -1,0 +1,8 @@
+db:
+  addr: "localhost:5436"
+  user: "pg-user"
+  database: "pg-db"
+  password: "pg-pass"
+
+kafka:
+  brokers: ["127.0.0.1:9092"]

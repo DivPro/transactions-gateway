@@ -1,0 +1,6 @@
+type: object
+additionalProperties: false
+required: [user_id, amount]
+properties:
+  user_id: { type: string, format: uuid }
+  amount: { type: string }

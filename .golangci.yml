@@ -1,0 +1,63 @@
+run:
+  deadline: 10m
+  concurrency: 4
+
+linters-settings:
+  govet:
+    enable-all: true
+    disable:
+      - fieldalignment
+      - shadow
+  errcheck:
+    check-type-assertions: true
+    check-blank: true
+  lll:
+    line-length: 200
+  nlreturn:
+    block-size: 5
+  gci:
+    sections:
+      - standard
+      - default
+      - prefix(git.qvant.ru/go-libs)
+      - prefix(gitlab.strwise.org/rps)
+    custom-order: true
+
+linters:
+  disable-all: true
+  enable:
+    - decorder
+    - errcheck
+    - errname
+    - errorlint
+    - gocognit
+    - goconst
+    - gocritic
+    - gocyclo
+    - gofmt
+    - gofumpt
+    - goimports
+    - gosec
+    - gosimple
+    - govet
+    - ineffassign
+    - lll
+    - megacheck
+    - revive
+    - staticcheck
+    - typecheck
+    - unconvert
+    - unused
+    - gci
+    - ireturn
+    - maintidx
+    - makezero
+    - misspell
+    - nlreturn
+    - nakedret
+    - stylecheck
+    - unconvert
+    - usestdlibvars
+    - whitespace
+    - prealloc
+    - unparam

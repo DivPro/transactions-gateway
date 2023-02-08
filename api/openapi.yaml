@@ -1,0 +1,60 @@
+openapi: 3.0.3
+
+info:
+  title: transactions-gateway API
+  description: Документация для transactions-gateway API
+  version: "1.0"
+
+servers:
+  - url: http://localhost:{port}
+    variables:
+      port: { default: "8083" }
+
+paths:
+  /deposits:
+    post:
+      operationId: DepositCreate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: ./schemas/RequestDepositCreate.yaml }
+      responses:
+        "200":
+          $ref: ./responses/ResponseSuccess.yaml
+        "400":
+          $ref: ./responses/ResponseError.yaml
+        default:
+          $ref: ./responses/ResponseError.yaml
+
+  /transactions:
+    post:
+      operationId: TransactionCreate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: ./schemas/RequestTransactionCreate.yaml }
+      responses:
+        "200":
+          $ref: ./responses/ResponseSuccess.yaml
+        "400":
+          $ref: ./responses/ResponseError.yaml
+        default:
+          $ref: ./responses/ResponseError.yaml
+    get:
+      operationId: TransactionList
+      responses:
+        "200":
+          $ref: ./responses/ResponseTransactionList.yaml
+        default:
+          $ref: ./responses/ResponseError.yaml
+
+  /users:
+    get:
+      operationId: UsersList
+      responses:
+        "200":
+          $ref: ./responses/ResponseUserList.yaml
+        default:
+          $ref: ./responses/ResponseError.yaml

@@ -1,0 +1,11 @@
+type: array
+items:
+  type: object
+  properties:
+    id: { type: string, format: uuid }
+    first_name: { type: string }
+    last_name: { type: string }
+    second_name: { type: string }
+    created_at: { type: string, format: date-time }
+    balance: { type: string }
+

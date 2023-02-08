@@ -1,0 +1,4 @@
+description: Success
+content:
+  application/json:
+    schema: { $ref: ../schemas/ResponseSuccess.yaml }
